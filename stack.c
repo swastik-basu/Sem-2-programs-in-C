@@ -2,30 +2,37 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAX_SIZE 100
 struct Stack
 {
-    int arr[MAX_SIZE];
+    int *arr;
+    int capacity;
     int top;
 };
+
 struct Stack s;
-void initialise()
+
+void initialise(int size)
 {
+    s.arr = (int *)malloc(sizeof(int) * size);
+    s.capacity = size;
     s.top = -1;
 }
+
 bool isFull()
 {
-    return s.top == MAX_SIZE - 1;
+    return s.top == s.capacity - 1;
 }
+
 bool isEmpty()
 {
     return s.top == -1;
 }
+
 void push(int data)
 {
     if (isFull())
     {
-        printf("Stack Overflow\n");
+        printf("Stack is Full\n");
     }
     else
     {
@@ -37,36 +44,65 @@ int pop()
 {
     if (isEmpty())
     {
-        printf("Stack Underflow.Returning -1\n");
-        return -1;
+        printf("Stack is Empty\n");
+        return -99999;
     }
     else
     {
-        return s.arr[s.top--];
+        int popped = s.arr[s.top--];
+        return popped;
     }
 }
+
 void peek()
 {
     if (isEmpty())
     {
-        printf("The stack is empty Nothing to peek.\n");
+        printf("Stack is Empty. Nothing to peek\n");
     }
     else
     {
-        return s.arr[s.top];
+        printf("Topmost element of the stack is:- %d\n", s.arr[s.top]);
     }
 }
 
 int main()
 {
-    int n;
-    scanf("Enter the number of elements inside the stack\n");
-    for (int i = 0; i < n; i++)
+
+    printf("Enter the maximum size of the queue: ");
+    int capacity;
+    scanf("%d", &capacity);
+    initialise(capacity);
+    char choice;
+    while (1)
     {
-        int data;
-        scanf("%d", &data);
-        push(data);
+        printf("Enter 'e' to enqueue, 'd' to dequeue , 'p' to peek, 'q' to quit: \n");
+        scanf(" %c", &choice);
+        getchar();
+        if (choice == 'e')
+        {
+            int data;
+            printf("Enter the data to be pushed: ");
+            scanf("%d", &data);
+            push(data);
+        }
+        else if (choice == 'd')
+        {
+            int data = pop();
+            printf("Popped element is: %d\n", data);
+        }
+
+        else if (choice == 'p')
+        {
+            peek();
+        }
+        else
+        {
+
+            printf("Exiting the program\n");
+            break;
+        }
     }
-    printf("if one element is popped from the list then it will be:- %d", pop());
+
     return 0;
 }

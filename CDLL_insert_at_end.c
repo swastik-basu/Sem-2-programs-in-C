@@ -24,13 +24,11 @@ struct node *insert_at_end(int data)
     }
     else
     {
-        struct node *last = head;
-        while (last->next != head)
+        struct node *temp = head;
+        while (temp->next != head)
         {
-            last = last->next;
+            temp = temp->next;
         }
-        last->next = newNode;
-        newNode->prev = last;
     }
     return head;
 }
