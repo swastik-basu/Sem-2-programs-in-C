@@ -25,10 +25,14 @@ struct node *insert_at_end(int data)
     else
     {
         struct node *temp = head;
-        while (temp->next != head)
+        do
         {
             temp = temp->next;
-        }
+        } while (temp->next != head);
+        newNode->prev = temp;
+        newNode->next = temp->next;
+        temp->next->prev = newNode;
+        temp->next = newNode;
     }
     return head;
 }

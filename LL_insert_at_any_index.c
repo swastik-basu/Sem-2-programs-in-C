@@ -20,14 +20,13 @@ struct node *insert_at_any(int data, int pos)
         head = newNode;
     }
     struct node *curr = head;
-    for (int i = 1; i < pos - 1 && curr != NULL; i++)
+    for (int i = 1; i <= pos - 1 && curr != NULL; i++)
     {
         curr = curr->next;
     }
     if (curr->next == NULL)
     {
-        curr->next->next = newNode;
-        newNode->next = NULL;
+        curr->next = newNode;
     }
     else
     {

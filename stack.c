@@ -84,6 +84,7 @@ int main()
             int data;
             printf("Enter the data to be pushed: ");
             scanf("%d", &data);
+            getchar();
             push(data);
         }
         else if (choice == 'd')
