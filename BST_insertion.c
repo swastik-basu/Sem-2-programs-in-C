@@ -7,6 +7,9 @@ struct node
     struct node *left;
     struct node *right;
 };
+
+struct node *root = NULL;
+
 struct node *insert(struct node *root, int value)
 {
     if (root == NULL)
@@ -42,7 +45,7 @@ void display(struct node *root)
 
 int main()
 {
-    struct node *root = NULL;
+
     char ch = 'e';
     while (ch == 'e')
     {
@@ -57,4 +60,5 @@ int main()
     }
 
     display(root);
+    printf("Inorder traversal of BST sorts the numbers\n");
 }
