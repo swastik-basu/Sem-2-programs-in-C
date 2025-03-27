@@ -84,12 +84,12 @@ void display()
 
     printf("Queue Elements are: ");
     int i = q.front;
-    printf("%d\t", q.arr[i]);
+    printf("%d", q.arr[i]);
     do
     {
 
         i = (i + 1) % q.capacity;
-        printf("%d\t", q.arr[i]);
+        printf("\t%d", q.arr[i]);
     } while (i != q.rear);
 
     printf("\n");
@@ -118,8 +118,7 @@ int main()
         else if (choice == 'd')
         {
             int data = dequeue();
-            if (data != -1)
-                printf("Dequeued element is: %d\n", data);
+            printf("Dequeued element is: %d\n", data);
         }
         else if (choice == 'q')
         {
@@ -129,6 +128,5 @@ int main()
     }
 
     display();
-    free(q.arr);
     return 0;
 }
